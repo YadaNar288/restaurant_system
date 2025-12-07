@@ -1,27 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\KitchenController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dish', function () {
-    return view('kitchen.dishes');
-});
 
+// Kitchen routes
+Route::get('/kitchen', [KitchenController::class, 'dashboard'])->name('kitchen.dashboard');
+Route::get('/kitchen/dishes', [KitchenController::class, 'dishes'])->name('kitchen.dishes');
+Route::get('/kitchen/stats', [KitchenController::class, 'stats'])->name('kitchen.stats');
+Route::get('/kitchen/settings', [KitchenController::class, 'settings'])->name('kitchen.settings');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\OrderController::class, 'index'])->name('home');
+Route::get('/home', [OrderController::class, 'index'])->name('home');
+
+// Dishes CRUD
 Route::resource('dishes', App\Http\Controllers\DishesController::class);
+
+// Orders CRUD (works now)
+Route::resource('kitchen/orders', OrderController::class)->names([
+    'index' => 'kitchen.orders',
+    'create' => 'kitchen.orders.create',
+    'store' => 'kitchen.orders.store',
+    'edit' => 'kitchen.orders.edit',
+    'update' => 'kitchen.orders.update',
+    'destroy' => 'kitchen.orders.destroy',
+]);

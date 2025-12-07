@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Dishes extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name','description','category_id','status','image'];
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
+    }
 }
+

@@ -11,11 +11,23 @@ class DishesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $dishes = Dishes::all(); // fetch all dishes
-        return view('kitchen.dishes', compact('dishes'));
+   public function index(Request $request)
+{
+    $categories = Categories::all(); // fetch all categories
+
+    $query = Dishes::query();
+
+    if ($request->has('category') && $request->category != null) {
+        // cast category to int
+        $categoryId = (int) $request->category;
+        $query->where('categories_id', $categoryId);
     }
+
+    $dishes = $query->get();
+
+    return view('kitchen.dishes', compact('dishes', 'categories'));
+}
+
 
     /**
      * Show the form for creating a new resource.

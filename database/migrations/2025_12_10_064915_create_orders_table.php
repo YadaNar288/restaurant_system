@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('order_id');
-            $table->integer('dishes_id');
-            $table->integer('tables_id');
-            $table->integer('status');
-            $table->timestamps();
-        });
+    $table->id(); // primary key
+    $table->string('table_number');
+    $table->json('items'); // list of dish IDs
+    $table->string('status')->default('pending');
+    $table->timestamps();
+});
+
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('orders');

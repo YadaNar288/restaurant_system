@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Categories;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
+{
+    // Check if the table exists first
+    if (Schema::hasTable('categories')) {
         view()->share('categories', Categories::all());
-    }
+    }}
 }

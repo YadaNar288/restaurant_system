@@ -175,9 +175,7 @@ tbody td {
 <div class="sidebar">
     <h4>Menu</h4>
     <ul>
-        <li class="{{ request()->is('kitchen') ? 'active' : '' }}">
-            <a href="{{ route('kitchen.dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a>
-        </li>
+       
         <li class="{{ request()->is('kitchen/dishes*') ? 'active' : '' }}">
             <a href="{{ route('kitchen.dishes') }}"><i class="fa-solid fa-bowl-food"></i> Dishes</a>
         </li>
@@ -185,7 +183,7 @@ tbody td {
             <a href="{{ route('kitchen.orders') }}"><i class="fa-solid fa-receipt"></i> Orders</a>
         </li>
         <li class="{{ request()->is('kitchen/stats*') ? 'active' : '' }}">
-            <a href="{{ route('kitchen.stats') }}"><i class="fa-solid fa-chart-line"></i> Stats</a>
+            <a href="{{ route('kitchen.stats') }}"><i class="fa-solid fa-chart-line"></i> Status</a>
         </li>
         <li class="{{ request()->is('kitchen/settings*') ? 'active' : '' }}">
             <a href="{{ route('kitchen.settings') }}"><i class="fa-solid fa-cog"></i> Settings</a>

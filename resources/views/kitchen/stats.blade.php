@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-wrapper">
-    <h2>Kitchen Stats</h2>
+    <h2>Kitchen Status</h2>
 
     <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
         <div style="flex:1; padding:20px; background:#fff3e0; border-radius:12px; text-align:center; box-shadow:0 4px 15px rgba(198,124,65,0.2);">

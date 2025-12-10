@@ -174,20 +174,33 @@
             <li><a href="{{ route('kitchen.stats') }}" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
             <li><a href="{{ route('kitchen.settings') }}" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-cog"></i> Settings</a></li>
         </ul>
+<h4>Categories</h4>
+<ul>
+    <li class="{{ request('category') == null ? 'active' : '' }}">
+        <a href="{{ route('kitchen.dishes') }}" style="color: inherit; text-decoration: none;">All</a>
+    </li>
+    @foreach($categories as $category)
+        <li class="{{ (int) request('category') === $category->id ? 'active' : '' }}">
+            <a href="{{ route('kitchen.dishes', ['category' => $category->id]) }}" style="color: inherit; text-decoration: none;">
+                {{ $category->name }}
+            </a>
+        </li>
+    @endforeach
+</ul>
 
-        <h4>Categories</h4>
-        <ul>
-            <li class="{{ request('category') == '' ? 'active' : '' }}">
-                <a href="{{ route('kitchen.dishes') }}" style="color: inherit; text-decoration: none;">All</a>
-            </li>
-            @foreach($categories as $category)
-                <li class="{{ request('category') == $category->id ? 'active' : '' }}">
-                    <a href="{{ route('kitchen.dishes', ['category' => $category->id]) }}" style="color: inherit; text-decoration: none;">
-                        {{ $category->name }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+
+<style>
+    ul li.active a {
+        font-weight: bold;
+        color: #d46a2f; /* Highlight color */
+        text-decoration: underline;
+    }
+
+    ul li a:hover {
+        color: #ff8c42;
+    }
+</style>
+
     </div>
 
     {{-- MAIN CONTENT --}}

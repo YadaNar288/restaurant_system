@@ -35,7 +35,8 @@ class KitchenController extends Controller
 
     // Category filter
     if ($request->has('category') && $request->category !== '') {
-        $query->where('categories_id', $request->category);
+        $query->where('category_id', $request->category);
+
     }
 
     $dishes = $query->get();
